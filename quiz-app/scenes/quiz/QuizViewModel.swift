@@ -42,6 +42,10 @@ struct QuizViewModel {
     var scoringLabelText: String {
         return String(format: "%02d/%02d", numberOfPlayerRightAnswers, numberOfPossibleAnswers)
     }
+    
+    var playerRightAnswersViewModels: [AnswerViewModel] {
+        return playerRightAnswers.map { AnswerViewModel(answer: $0) }
+    }
 
     init (timeLimitInSeconds: TimeInterval = 10) {
         self.timeLimitInSeconds = timeLimitInSeconds

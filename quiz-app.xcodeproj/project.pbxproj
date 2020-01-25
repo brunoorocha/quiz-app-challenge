@@ -28,6 +28,7 @@
 		A3F35F9223DC6DEA0087C0FD /* QuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F9123DC6DEA0087C0FD /* QuizViewModel.swift */; };
 		A3F35F9423DC72090087C0FD /* TimeCountdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F9323DC72090087C0FD /* TimeCountdown.swift */; };
 		A3F35F9723DC7E0F0087C0FD /* QuizViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F9623DC7E0F0087C0FD /* QuizViewModelTests.swift */; };
+		A3F35F9923DC912E0087C0FD /* AnswerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F9823DC912E0087C0FD /* AnswerViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		A3F35F9123DC6DEA0087C0FD /* QuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewModel.swift; sourceTree = "<group>"; };
 		A3F35F9323DC72090087C0FD /* TimeCountdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCountdown.swift; sourceTree = "<group>"; };
 		A3F35F9623DC7E0F0087C0FD /* QuizViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewModelTests.swift; sourceTree = "<group>"; };
+		A3F35F9823DC912E0087C0FD /* AnswerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +235,7 @@
 			children = (
 				A3F35F8F23DC6DD80087C0FD /* QuizViewController.swift */,
 				A3F35F9123DC6DEA0087C0FD /* QuizViewModel.swift */,
+				A3F35F9823DC912E0087C0FD /* AnswerViewModel.swift */,
 			);
 			path = quiz;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3F35F9923DC912E0087C0FD /* AnswerViewModel.swift in Sources */,
 				A39D8E2223DC63C4009117A5 /* ViewController.swift in Sources */,
 				A3F35F8423DC68950087C0FD /* TextField.swift in Sources */,
 				A3F35F9423DC72090087C0FD /* TimeCountdown.swift in Sources */,
