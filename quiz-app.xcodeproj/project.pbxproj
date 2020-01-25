@@ -18,6 +18,11 @@
 		A3F35F7823DC66E70087C0FD /* NetworkServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F7723DC66E70087C0FD /* NetworkServiceError.swift */; };
 		A3F35F7C23DC67AB0087C0FD /* QuizQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F7B23DC67AB0087C0FD /* QuizQuestion.swift */; };
 		A3F35F7E23DC67C10087C0FD /* QuestionUseCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F7D23DC67C10087C0FD /* QuestionUseCases.swift */; };
+		A3F35F8023DC68720087C0FD /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F7F23DC68720087C0FD /* Button.swift */; };
+		A3F35F8223DC687F0087C0FD /* LargeTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F8123DC687F0087C0FD /* LargeTitle.swift */; };
+		A3F35F8423DC68950087C0FD /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F8323DC68950087C0FD /* TextField.swift */; };
+		A3F35F8723DC68C30087C0FD /* UIColor+rgbaExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F8623DC68C30087C0FD /* UIColor+rgbaExtension.swift */; };
+		A3F35F8923DC69760087C0FD /* LabelLarge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F8823DC69760087C0FD /* LabelLarge.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +51,11 @@
 		A3F35F7723DC66E70087C0FD /* NetworkServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceError.swift; sourceTree = "<group>"; };
 		A3F35F7B23DC67AB0087C0FD /* QuizQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizQuestion.swift; sourceTree = "<group>"; };
 		A3F35F7D23DC67C10087C0FD /* QuestionUseCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionUseCases.swift; sourceTree = "<group>"; };
+		A3F35F7F23DC68720087C0FD /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		A3F35F8123DC687F0087C0FD /* LargeTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeTitle.swift; sourceTree = "<group>"; };
+		A3F35F8323DC68950087C0FD /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		A3F35F8623DC68C30087C0FD /* UIColor+rgbaExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+rgbaExtension.swift"; sourceTree = "<group>"; };
+		A3F35F8823DC69760087C0FD /* LabelLarge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelLarge.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +139,7 @@
 		A39D8E4123DC6504009117A5 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				A3F35F8523DC68AE0087C0FD /* extensions */,
 				A39D8E4523DC653A009117A5 /* components */,
 				A39D8E4423DC652E009117A5 /* storyboards */,
 			);
@@ -163,6 +174,10 @@
 		A39D8E4523DC653A009117A5 /* components */ = {
 			isa = PBXGroup;
 			children = (
+				A3F35F7F23DC68720087C0FD /* Button.swift */,
+				A3F35F8123DC687F0087C0FD /* LargeTitle.swift */,
+				A3F35F8323DC68950087C0FD /* TextField.swift */,
+				A3F35F8823DC69760087C0FD /* LabelLarge.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -189,6 +204,14 @@
 				A3F35F7D23DC67C10087C0FD /* QuestionUseCases.swift */,
 			);
 			path = "use-cases";
+			sourceTree = "<group>";
+		};
+		A3F35F8523DC68AE0087C0FD /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A3F35F8623DC68C30087C0FD /* UIColor+rgbaExtension.swift */,
+			);
+			path = extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,13 +315,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				A39D8E2223DC63C4009117A5 /* ViewController.swift in Sources */,
+				A3F35F8423DC68950087C0FD /* TextField.swift in Sources */,
 				A3F35F7823DC66E70087C0FD /* NetworkServiceError.swift in Sources */,
+				A3F35F8223DC687F0087C0FD /* LargeTitle.swift in Sources */,
 				A3F35F7C23DC67AB0087C0FD /* QuizQuestion.swift in Sources */,
+				A3F35F8923DC69760087C0FD /* LabelLarge.swift in Sources */,
 				A39D8E1E23DC63C4009117A5 /* AppDelegate.swift in Sources */,
 				A3F35F7423DC66B90087C0FD /* NetworkService.swift in Sources */,
 				A3F35F7E23DC67C10087C0FD /* QuestionUseCases.swift in Sources */,
 				A3F35F7623DC66CE0087C0FD /* Resource.swift in Sources */,
+				A3F35F8023DC68720087C0FD /* Button.swift in Sources */,
 				A39D8E2023DC63C4009117A5 /* SceneDelegate.swift in Sources */,
+				A3F35F8723DC68C30087C0FD /* UIColor+rgbaExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
