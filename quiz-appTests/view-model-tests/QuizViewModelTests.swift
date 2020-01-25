@@ -19,6 +19,11 @@ class QuizViewModelTests: XCTestCase {
         let viewModel = QuizViewModel(timeLimitInSeconds: 60)
         XCTAssertEqual(viewModel.timeCountdownLabelText, "01:00")
     }
+    
+    func testTimers_timeCountdownShouldBeEqualToTimeLimitWhenInitialized () {
+        let viewModel = QuizViewModel(timeLimitInSeconds: 60)
+        XCTAssertEqual(viewModel.timeCountdownInSeconds, viewModel.timeLimitInSeconds)
+    }
 
     func testScoringLabelText_shouldBeInRightFormat_firstCase () {
         let viewModel = makeAMockQuizViewModel()
@@ -39,6 +44,18 @@ class QuizViewModelTests: XCTestCase {
 
         XCTAssertEqual(viewModel.numberOfPlayerRightAnswers, 1)
         XCTAssertTrue(viewModel.playerRightAnswers.contains(answer))
+    }
+
+    func testPlayerTypedAnAnswer_shouldAddOnPlayerRightAnswersJustOnceWhenItsRight () {
+        var viewModel = makeAMockQuizViewModel()
+        let answer = "for"
+
+        viewModel.playerDidTypeAnAnswer(answer: answer)
+        viewModel.playerDidTypeAnAnswer(answer: answer)
+        
+        let numberOfEqualAnswers = viewModel.playerRightAnswers.filter { $0 == answer }.count
+
+        XCTAssertEqual(numberOfEqualAnswers, 1)
     }
 
     func testPlayerTypedAnAnswer_shouldNotAddOnPlayerRightAnswersWhenItsWrong () {

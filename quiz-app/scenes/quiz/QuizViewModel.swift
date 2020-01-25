@@ -12,18 +12,25 @@ enum MatchState {
     case initial
     case waitingToStart
     case running
-    case over
+    case ended
 }
 
-struct QuizViewModel {
+class QuizViewModel {
     var question: String = ""
     var possibleAnswers: [String] = []
     var playerRightAnswers: [String] = []
 
     let timeLimitInSeconds: TimeInterval
     var timeCountdownInSeconds: TimeInterval
+    var timer: TimeCountdown
     
     var matchState: MatchState = .initial
+    
+    var timeCountdowDidUpdate: (() -> Void)?
+    var timeCountdowDidEnd: (() -> Void)?
+    var matchWillStart: (() -> Void)?
+    var matchDidStart: (() -> Void)?
+    var matchDidEnd: (() -> Void)?
 
     var numberOfPossibleAnswers: Int {
         return possibleAnswers.count
@@ -50,13 +57,65 @@ struct QuizViewModel {
     init (timeLimitInSeconds: TimeInterval = 10) {
         self.timeLimitInSeconds = timeLimitInSeconds
         timeCountdownInSeconds = timeLimitInSeconds
+        timer = TimeCountdown(durationInSeconds: timeLimitInSeconds)
+        bindToTimerEvents()
     }
     
-    mutating func playerDidTypeAnAnswer(answer: String) {
-        let isPlayerAnswerRight = possibleAnswers.first { $0 == answer } != nil ? true : false
-        if (isPlayerAnswerRight) {
+    private func bindToTimerEvents () {
+        timer.timerDidUpdate = { [weak self] countdownValue in
+            self?.updateTimeCountdown(countdownValue)
+        }
+
+        timer.timerDidEnd = { [weak self] in
+            self?.timedOut()
+        }
+    }
+    
+    func playerDidTypeAnAnswer(answer: String) {
+        let isPlayerAnswerRight = possibleAnswers.first { $0 == answer } != nil
+        let answerHasAlreadyBeenCounted = playerRightAnswers.filter { $0 == answer }.count == 1
+        if (isPlayerAnswerRight && !answerHasAlreadyBeenCounted) {
             playerRightAnswers.append(answer)
         }
+    }
+
+    func prepareMatchToStart () {
+        matchState = .waitingToStart
+        matchWillStart?()
+        
+        let useCase = QuestionUseCases(networkService: NetworkService())
+        useCase.getQuestion { [weak self] (result: Result<QuizQuestion, Error>) in
+            switch result {
+            case .success(let quiz):
+                self?.question = quiz.question
+                self?.possibleAnswers = quiz.answer
+                self?.startMatch()
+            case .failure(let error):
+                
+                return
+            }
+        }
+    }
+
+    func startMatch () {
+        matchState = .running
+        timer.start()
+        matchDidStart?()
+    }
+
+    func endMatch () {
+        matchState = .ended
+        timer.reset()
+        matchDidEnd?()
+    }
+    
+    func updateTimeCountdown (_ value: TimeInterval) {
+        timeCountdownInSeconds = value
+        timeCountdowDidUpdate?()
+    }
+    
+    func timedOut () {
+        timeCountdowDidEnd?()
     }
 }
 

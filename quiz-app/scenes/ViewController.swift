@@ -15,22 +15,18 @@ class ViewController: UIViewController {
         view.backgroundColor = .white
         
         let footerView = QuizFooterView()
-        let timer = TimeCountdown(durationInSeconds: 5)
-        timer.start()
-        
-        timer.timerDidUpdate = { currentTime in
-            print(currentTime)
-        }
-
-        timer.timerDidEnd = {
-            print("It's over!")
-        }
+        let viewModel = QuizViewModel()
+        viewModel.prepareMatchToStart()
 
         view.addSubview(footerView)
 
         footerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         footerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         footerView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+
+        viewModel.timeCountdowDidUpdate = {
+            footerView.countdownLabel.text = viewModel.timeCountdownLabelText
+        }
     }
 }
 
