@@ -9,23 +9,35 @@
 import Foundation
 
 enum MatchState {
+    case initial
     case waitingToStart
     case running
     case over
 }
 
 struct QuizViewModel {
-    var question: String
-    var possibleAnswers: [String]
-    var playerRightAnswers: [String]
+    var question: String = ""
+    var possibleAnswers: [String] = []
+    var playerRightAnswers: [String] = []
 
     var playerRightAnswersCount: Int {
         return playerRightAnswers.count
     }
     
-    var timeLimit: TimeInterval
-    var timeCountdown: TimeInterval
+    let timeLimitInSeconds: TimeInterval
+    var timeCountdownInSeconds: TimeInterval
     
-    var matchState: MatchState
+    var matchState: MatchState = .initial
+    
+    var timeCountdownLabelText: String {
+        let minutes = Int(timeCountdownInSeconds / 60)
+        let seconds = Int(timeCountdownInSeconds) % 60
+        return String(format: "%02d:%02d", minutes, seconds)
+    }
+
+    init (timeLimitInSeconds: TimeInterval = 10) {
+        self.timeLimitInSeconds = timeLimitInSeconds
+        timeCountdownInSeconds = timeLimitInSeconds
+    }
 }
 

@@ -28,6 +28,7 @@
 		A3F35F9023DC6DD80087C0FD /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F8F23DC6DD80087C0FD /* QuizViewController.swift */; };
 		A3F35F9223DC6DEA0087C0FD /* QuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F9123DC6DEA0087C0FD /* QuizViewModel.swift */; };
 		A3F35F9423DC72090087C0FD /* TimeCountdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F9323DC72090087C0FD /* TimeCountdown.swift */; };
+		A3F35F9723DC7E0F0087C0FD /* QuizViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F9623DC7E0F0087C0FD /* QuizViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		A3F35F8F23DC6DD80087C0FD /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 		A3F35F9123DC6DEA0087C0FD /* QuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewModel.swift; sourceTree = "<group>"; };
 		A3F35F9323DC72090087C0FD /* TimeCountdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCountdown.swift; sourceTree = "<group>"; };
+		A3F35F9623DC7E0F0087C0FD /* QuizViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 		A39D8E3323DC63C7009117A5 /* quiz-appTests */ = {
 			isa = PBXGroup;
 			children = (
+				A3F35F9523DC7DED0087C0FD /* view-model-tests */,
 				A39D8E3423DC63C7009117A5 /* quiz_appTests.swift */,
 				A39D8E3623DC63C7009117A5 /* Info.plist */,
 			);
@@ -235,6 +238,14 @@
 				A3F35F9123DC6DEA0087C0FD /* QuizViewModel.swift */,
 			);
 			path = quiz;
+			sourceTree = "<group>";
+		};
+		A3F35F9523DC7DED0087C0FD /* view-model-tests */ = {
+			isa = PBXGroup;
+			children = (
+				A3F35F9623DC7E0F0087C0FD /* QuizViewModelTests.swift */,
+			);
+			path = "view-model-tests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -363,6 +374,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A39D8E3523DC63C7009117A5 /* quiz_appTests.swift in Sources */,
+				A3F35F9723DC7E0F0087C0FD /* QuizViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
