@@ -25,6 +25,9 @@
 		A3F35F8923DC69760087C0FD /* LabelLarge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F8823DC69760087C0FD /* LabelLarge.swift */; };
 		A3F35F8B23DC69FB0087C0FD /* QuizFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F8A23DC69FB0087C0FD /* QuizFooterView.swift */; };
 		A3F35F8D23DC6A890087C0FD /* HorizontalSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F8C23DC6A890087C0FD /* HorizontalSeparator.swift */; };
+		A3F35F9023DC6DD80087C0FD /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F8F23DC6DD80087C0FD /* QuizViewController.swift */; };
+		A3F35F9223DC6DEA0087C0FD /* QuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F9123DC6DEA0087C0FD /* QuizViewModel.swift */; };
+		A3F35F9423DC72090087C0FD /* TimeCountdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F9323DC72090087C0FD /* TimeCountdown.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +63,9 @@
 		A3F35F8823DC69760087C0FD /* LabelLarge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelLarge.swift; sourceTree = "<group>"; };
 		A3F35F8A23DC69FB0087C0FD /* QuizFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizFooterView.swift; sourceTree = "<group>"; };
 		A3F35F8C23DC6A890087C0FD /* HorizontalSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSeparator.swift; sourceTree = "<group>"; };
+		A3F35F8F23DC6DD80087C0FD /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
+		A3F35F9123DC6DEA0087C0FD /* QuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewModel.swift; sourceTree = "<group>"; };
+		A3F35F9323DC72090087C0FD /* TimeCountdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCountdown.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +159,7 @@
 		A39D8E4223DC6511009117A5 /* scenes */ = {
 			isa = PBXGroup;
 			children = (
+				A3F35F8E23DC6DB90087C0FD /* quiz */,
 				A39D8E2123DC63C4009117A5 /* ViewController.swift */,
 			);
 			path = scenes;
@@ -200,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				A3F35F7B23DC67AB0087C0FD /* QuizQuestion.swift */,
+				A3F35F9323DC72090087C0FD /* TimeCountdown.swift */,
 			);
 			path = entities;
 			sourceTree = "<group>";
@@ -218,6 +226,15 @@
 				A3F35F8623DC68C30087C0FD /* UIColor+rgbaExtension.swift */,
 			);
 			path = extensions;
+			sourceTree = "<group>";
+		};
+		A3F35F8E23DC6DB90087C0FD /* quiz */ = {
+			isa = PBXGroup;
+			children = (
+				A3F35F8F23DC6DD80087C0FD /* QuizViewController.swift */,
+				A3F35F9123DC6DEA0087C0FD /* QuizViewModel.swift */,
+			);
+			path = quiz;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -322,6 +339,7 @@
 			files = (
 				A39D8E2223DC63C4009117A5 /* ViewController.swift in Sources */,
 				A3F35F8423DC68950087C0FD /* TextField.swift in Sources */,
+				A3F35F9423DC72090087C0FD /* TimeCountdown.swift in Sources */,
 				A3F35F7823DC66E70087C0FD /* NetworkServiceError.swift in Sources */,
 				A3F35F8223DC687F0087C0FD /* LargeTitle.swift in Sources */,
 				A3F35F7C23DC67AB0087C0FD /* QuizQuestion.swift in Sources */,
@@ -331,8 +349,10 @@
 				A3F35F7423DC66B90087C0FD /* NetworkService.swift in Sources */,
 				A3F35F7E23DC67C10087C0FD /* QuestionUseCases.swift in Sources */,
 				A3F35F8D23DC6A890087C0FD /* HorizontalSeparator.swift in Sources */,
+				A3F35F9023DC6DD80087C0FD /* QuizViewController.swift in Sources */,
 				A3F35F7623DC66CE0087C0FD /* Resource.swift in Sources */,
 				A3F35F8023DC68720087C0FD /* Button.swift in Sources */,
+				A3F35F9223DC6DEA0087C0FD /* QuizViewModel.swift in Sources */,
 				A39D8E2023DC63C4009117A5 /* SceneDelegate.swift in Sources */,
 				A3F35F8723DC68C30087C0FD /* UIColor+rgbaExtension.swift in Sources */,
 			);
