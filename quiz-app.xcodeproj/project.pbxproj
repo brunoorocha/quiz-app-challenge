@@ -16,6 +16,8 @@
 		A3F35F7423DC66B90087C0FD /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F7323DC66B90087C0FD /* NetworkService.swift */; };
 		A3F35F7623DC66CE0087C0FD /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F7523DC66CE0087C0FD /* Resource.swift */; };
 		A3F35F7823DC66E70087C0FD /* NetworkServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F7723DC66E70087C0FD /* NetworkServiceError.swift */; };
+		A3F35F7C23DC67AB0087C0FD /* QuizQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F7B23DC67AB0087C0FD /* QuizQuestion.swift */; };
+		A3F35F7E23DC67C10087C0FD /* QuestionUseCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F7D23DC67C10087C0FD /* QuestionUseCases.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,8 @@
 		A3F35F7323DC66B90087C0FD /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		A3F35F7523DC66CE0087C0FD /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		A3F35F7723DC66E70087C0FD /* NetworkServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceError.swift; sourceTree = "<group>"; };
+		A3F35F7B23DC67AB0087C0FD /* QuizQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizQuestion.swift; sourceTree = "<group>"; };
+		A3F35F7D23DC67C10087C0FD /* QuestionUseCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionUseCases.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +146,8 @@
 		A39D8E4323DC6519009117A5 /* domain */ = {
 			isa = PBXGroup;
 			children = (
+				A3F35F7A23DC67840087C0FD /* use-cases */,
+				A3F35F7923DC67730087C0FD /* entities */,
 			);
 			path = domain;
 			sourceTree = "<group>";
@@ -167,6 +173,22 @@
 				A39D8E2623DC63C6009117A5 /* Assets.xcassets */,
 			);
 			path = assets;
+			sourceTree = "<group>";
+		};
+		A3F35F7923DC67730087C0FD /* entities */ = {
+			isa = PBXGroup;
+			children = (
+				A3F35F7B23DC67AB0087C0FD /* QuizQuestion.swift */,
+			);
+			path = entities;
+			sourceTree = "<group>";
+		};
+		A3F35F7A23DC67840087C0FD /* use-cases */ = {
+			isa = PBXGroup;
+			children = (
+				A3F35F7D23DC67C10087C0FD /* QuestionUseCases.swift */,
+			);
+			path = "use-cases";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,8 +293,10 @@
 			files = (
 				A39D8E2223DC63C4009117A5 /* ViewController.swift in Sources */,
 				A3F35F7823DC66E70087C0FD /* NetworkServiceError.swift in Sources */,
+				A3F35F7C23DC67AB0087C0FD /* QuizQuestion.swift in Sources */,
 				A39D8E1E23DC63C4009117A5 /* AppDelegate.swift in Sources */,
 				A3F35F7423DC66B90087C0FD /* NetworkService.swift in Sources */,
+				A3F35F7E23DC67C10087C0FD /* QuestionUseCases.swift in Sources */,
 				A3F35F7623DC66CE0087C0FD /* Resource.swift in Sources */,
 				A39D8E2023DC63C4009117A5 /* SceneDelegate.swift in Sources */,
 			);
