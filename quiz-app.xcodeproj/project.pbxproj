@@ -12,7 +12,6 @@
 		A39D8E2223DC63C4009117A5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39D8E2123DC63C4009117A5 /* ViewController.swift */; };
 		A39D8E2723DC63C6009117A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A39D8E2623DC63C6009117A5 /* Assets.xcassets */; };
 		A39D8E2A23DC63C6009117A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A39D8E2823DC63C6009117A5 /* LaunchScreen.storyboard */; };
-		A39D8E3523DC63C7009117A5 /* quiz_appTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39D8E3423DC63C7009117A5 /* quiz_appTests.swift */; };
 		A3F35F7423DC66B90087C0FD /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F7323DC66B90087C0FD /* NetworkService.swift */; };
 		A3F35F7623DC66CE0087C0FD /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F7523DC66CE0087C0FD /* Resource.swift */; };
 		A3F35F7823DC66E70087C0FD /* NetworkServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F7723DC66E70087C0FD /* NetworkServiceError.swift */; };
@@ -50,7 +49,6 @@
 		A39D8E2923DC63C6009117A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A39D8E2B23DC63C6009117A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A39D8E3023DC63C7009117A5 /* quiz-appTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "quiz-appTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A39D8E3423DC63C7009117A5 /* quiz_appTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = quiz_appTests.swift; sourceTree = "<group>"; };
 		A39D8E3623DC63C7009117A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3F35F7323DC66B90087C0FD /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		A3F35F7523DC66CE0087C0FD /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
@@ -124,7 +122,6 @@
 			isa = PBXGroup;
 			children = (
 				A3F35F9523DC7DED0087C0FD /* view-model-tests */,
-				A39D8E3423DC63C7009117A5 /* quiz_appTests.swift */,
 				A39D8E3623DC63C7009117A5 /* Info.plist */,
 			);
 			path = "quiz-appTests";
@@ -373,7 +370,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A39D8E3523DC63C7009117A5 /* quiz_appTests.swift in Sources */,
 				A3F35F9723DC7E0F0087C0FD /* QuizViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

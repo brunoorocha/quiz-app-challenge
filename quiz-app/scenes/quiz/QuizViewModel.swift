@@ -20,24 +20,39 @@ struct QuizViewModel {
     var possibleAnswers: [String] = []
     var playerRightAnswers: [String] = []
 
-    var playerRightAnswersCount: Int {
-        return playerRightAnswers.count
-    }
-    
     let timeLimitInSeconds: TimeInterval
     var timeCountdownInSeconds: TimeInterval
     
     var matchState: MatchState = .initial
+
+    var numberOfPossibleAnswers: Int {
+        return possibleAnswers.count
+    }
+
+    var numberOfPlayerRightAnswers: Int {
+        return playerRightAnswers.count
+    }
     
     var timeCountdownLabelText: String {
         let minutes = Int(timeCountdownInSeconds / 60)
         let seconds = Int(timeCountdownInSeconds) % 60
         return String(format: "%02d:%02d", minutes, seconds)
     }
+    
+    var scoringLabelText: String {
+        return String(format: "%02d/%02d", numberOfPlayerRightAnswers, numberOfPossibleAnswers)
+    }
 
     init (timeLimitInSeconds: TimeInterval = 10) {
         self.timeLimitInSeconds = timeLimitInSeconds
         timeCountdownInSeconds = timeLimitInSeconds
+    }
+    
+    mutating func playerDidTypeAnAnswer(answer: String) {
+        let isPlayerAnswerRight = possibleAnswers.first { $0 == answer } != nil ? true : false
+        if (isPlayerAnswerRight) {
+            playerRightAnswers.append(answer)
+        }
     }
 }
 
