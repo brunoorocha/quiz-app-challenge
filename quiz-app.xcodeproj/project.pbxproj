@@ -13,6 +13,9 @@
 		A39D8E2723DC63C6009117A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A39D8E2623DC63C6009117A5 /* Assets.xcassets */; };
 		A39D8E2A23DC63C6009117A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A39D8E2823DC63C6009117A5 /* LaunchScreen.storyboard */; };
 		A39D8E3523DC63C7009117A5 /* quiz_appTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39D8E3423DC63C7009117A5 /* quiz_appTests.swift */; };
+		A3F35F7423DC66B90087C0FD /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F7323DC66B90087C0FD /* NetworkService.swift */; };
+		A3F35F7623DC66CE0087C0FD /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F7523DC66CE0087C0FD /* Resource.swift */; };
+		A3F35F7823DC66E70087C0FD /* NetworkServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F7723DC66E70087C0FD /* NetworkServiceError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +39,9 @@
 		A39D8E3023DC63C7009117A5 /* quiz-appTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "quiz-appTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A39D8E3423DC63C7009117A5 /* quiz_appTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = quiz_appTests.swift; sourceTree = "<group>"; };
 		A39D8E3623DC63C7009117A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A3F35F7323DC66B90087C0FD /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		A3F35F7523DC66CE0087C0FD /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
+		A3F35F7723DC66E70087C0FD /* NetworkServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +115,9 @@
 		A39D8E4023DC64E9009117A5 /* services */ = {
 			isa = PBXGroup;
 			children = (
+				A3F35F7323DC66B90087C0FD /* NetworkService.swift */,
+				A3F35F7523DC66CE0087C0FD /* Resource.swift */,
+				A3F35F7723DC66E70087C0FD /* NetworkServiceError.swift */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -261,7 +270,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A39D8E2223DC63C4009117A5 /* ViewController.swift in Sources */,
+				A3F35F7823DC66E70087C0FD /* NetworkServiceError.swift in Sources */,
 				A39D8E1E23DC63C4009117A5 /* AppDelegate.swift in Sources */,
+				A3F35F7423DC66B90087C0FD /* NetworkService.swift in Sources */,
+				A3F35F7623DC66CE0087C0FD /* Resource.swift in Sources */,
 				A39D8E2023DC63C4009117A5 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
