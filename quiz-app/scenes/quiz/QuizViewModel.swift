@@ -32,6 +32,7 @@ class QuizViewModel {
     var matchIsReadyToStart: (() -> Void)?
     var matchDidStart: (() -> Void)?
     var matchDidEnd: (() -> Void)?
+    var playerDidHitAnKeyword: (() -> Void)?
 
     var numberOfPossibleAnswers: Int {
         return possibleAnswers.count
@@ -59,7 +60,7 @@ class QuizViewModel {
         return playerRightAnswers.map { AnswerViewModel(answer: $0) }
     }
 
-    init (timeLimitInSeconds: TimeInterval = 10) {
+    init (timeLimitInSeconds: TimeInterval = 60) {
         self.timeLimitInSeconds = timeLimitInSeconds
         timeCountdownInSeconds = timeLimitInSeconds
         timer = TimeCountdown(durationInSeconds: timeLimitInSeconds)
@@ -77,10 +78,11 @@ class QuizViewModel {
     }
     
     func playerDidTypeAnAnswer(answer: String) {
-        let isPlayerAnswerRight = possibleAnswers.first { $0 == answer } != nil
-        let answerHasAlreadyBeenCounted = playerRightAnswers.filter { $0 == answer }.count == 1
+        let isPlayerAnswerRight = possibleAnswers.first { $0 == answer.lowercased() } != nil
+        let answerHasAlreadyBeenCounted = playerRightAnswers.contains(answer)
         if (isPlayerAnswerRight && !answerHasAlreadyBeenCounted) {
             playerRightAnswers.append(answer)
+            playerDidHitAnKeyword?()
         }
     }
     
