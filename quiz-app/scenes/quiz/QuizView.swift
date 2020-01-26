@@ -13,15 +13,22 @@ class QuizView: UIView {
     let answerTextField = TextField()
     let quizFooterView = QuizFooterView()
     let playerAnswersTableView = UITableView()
+    var quizFooterViewBottomConstraint: NSLayoutConstraint!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureView()
         configureSubviews()
+        configureKeyboardEventObservers()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func configureKeyboardEventObservers () {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     private func configureView () {
@@ -37,6 +44,8 @@ class QuizView: UIView {
         addSubview(answerTextField)
         addSubview(playerAnswersTableView)
         addSubview(quizFooterView)
+        
+        quizFooterViewBottomConstraint = quizFooterView.bottomAnchor.constraint(equalTo: bottomAnchor)
 
         NSLayoutConstraint.activate([
             questionLabel.topAnchor.constraint(equalTo: topAnchor, constant: 44),
@@ -52,9 +61,28 @@ class QuizView: UIView {
             playerAnswersTableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             playerAnswersTableView.bottomAnchor.constraint(equalTo: quizFooterView.topAnchor),
 
-            quizFooterView.bottomAnchor.constraint(equalTo: bottomAnchor),
             quizFooterView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            quizFooterView.trailingAnchor.constraint(equalTo: trailingAnchor)
+            quizFooterView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            quizFooterViewBottomConstraint
         ])
+    }
+    
+    func setQuizFooterViewBottomConstraintConstant(to constant: CGFloat) {
+        quizFooterViewBottomConstraint.isActive = false
+        quizFooterViewBottomConstraint = quizFooterView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: constant)
+        quizFooterViewBottomConstraint.isActive = true
+
+        UIView.animate(withDuration: 0.25, delay: 0.0, options: [.curveEaseOut], animations: { [weak self] in
+            self?.layoutIfNeeded()
+        })
+    }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        guard let keyboardSize: CGRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        setQuizFooterViewBottomConstraintConstant(to: -keyboardSize.size.height)
+    }
+
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        setQuizFooterViewBottomConstraintConstant(to: 0)
     }
 }

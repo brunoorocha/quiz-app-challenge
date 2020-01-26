@@ -21,11 +21,10 @@ class QuizViewController: UIViewController {
     override func loadView() {
         view = quizView
     }
-    
+
     private func configureDelegatesAndDataSources () {
-        quizView.playerAnswersTableView.delegate = self
-        quizView.playerAnswersTableView.dataSource = self
         quizView.answerTextField.delegate = self
+        quizView.playerAnswersTableView.dataSource = self
     }
     
     private func configureEventHandlers () {
@@ -65,16 +64,7 @@ class QuizViewController: UIViewController {
             self?.quizView.answerTextField.text = ""
         }
     }
-    
-    @objc private func didTapOnStartResetButton () {
-        viewModel.onStartResetAction()
-        self.quizView.quizFooterView.button.setTitle(self.viewModel.startResetButtonText, for: .normal)
-    }
-<<<<<<< HEAD
-    */
 
-=======
-    
     private func addAnswerTableViewCell () {
         let row = viewModel.playerRightAnswersViewModels.count - 1
         let newCellIndexPath = IndexPath(row: row, section: 0)
@@ -89,9 +79,14 @@ class QuizViewController: UIViewController {
         viewModel.playerDidTypeAnAnswer(answer: typedAnswer)
         self.quizView.answerTextField.text = ""
     }
+    
+    @objc private func didTapOnStartResetButton () {
+        viewModel.onStartResetAction()
+        self.quizView.quizFooterView.button.setTitle(self.viewModel.startResetButtonText, for: .normal)
+    }    
 }
 
-extension QuizViewController: UITableViewDelegate, UITableViewDataSource {
+extension QuizViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.playerRightAnswersViewModels.count
     }
