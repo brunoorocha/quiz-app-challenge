@@ -12,6 +12,7 @@ class QuizView: UIView {
     let questionLabel = LargeTitle()
     let answerTextField = TextField()
     let quizFooterView = QuizFooterView()
+    let loadingView = LoadingView()
     let playerAnswersTableView = UITableView()
     var quizFooterViewBottomConstraint: NSLayoutConstraint!
 
@@ -44,7 +45,8 @@ class QuizView: UIView {
         addSubview(answerTextField)
         addSubview(playerAnswersTableView)
         addSubview(quizFooterView)
-        
+        addSubview(loadingView)
+
         quizFooterViewBottomConstraint = quizFooterView.bottomAnchor.constraint(equalTo: bottomAnchor)
 
         NSLayoutConstraint.activate([
@@ -63,7 +65,12 @@ class QuizView: UIView {
 
             quizFooterView.leadingAnchor.constraint(equalTo: leadingAnchor),
             quizFooterView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            quizFooterViewBottomConstraint
+            quizFooterViewBottomConstraint,
+            
+            loadingView.topAnchor.constraint(equalTo: topAnchor),
+            loadingView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            loadingView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            loadingView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
     
@@ -76,7 +83,29 @@ class QuizView: UIView {
             self?.layoutIfNeeded()
         })
     }
+
+    func showLoadingView () {
+        loadingView.isHidden = false
+        questionLabel.isHidden = true
+        answerTextField.isHidden = true
+        playerAnswersTableView.isHidden = true
+    }
+
+    func hideLoadingView () {
+        loadingView.isHidden = true
+        questionLabel.isHidden = false
+        answerTextField.isHidden = false
+    }
+
+    func alreadyHasAnswers () {
+        playerAnswersTableView.isHidden = false
+    }
     
+    func hasNoAnswers () {
+        playerAnswersTableView.isHidden = true
+        playerAnswersTableView.reloadData()
+    }
+
     @objc private func keyboardWillShow(notification: NSNotification) {
         guard let keyboardSize: CGRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
         setQuizFooterViewBottomConstraintConstant(to: -keyboardSize.size.height)

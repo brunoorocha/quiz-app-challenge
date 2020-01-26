@@ -131,6 +131,7 @@ class QuizViewModel {
         matchState = .notStarted
         timer.reset()
         playerRightAnswers = []
+        matchIsReadyToStart?()
     }
 
     func updateTimeCountdown (_ value: TimeInterval) {

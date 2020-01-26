@@ -29,6 +29,8 @@
 		A3F35F9423DC72090087C0FD /* TimeCountdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F9323DC72090087C0FD /* TimeCountdown.swift */; };
 		A3F35F9723DC7E0F0087C0FD /* QuizViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F9623DC7E0F0087C0FD /* QuizViewModelTests.swift */; };
 		A3F35F9923DC912E0087C0FD /* AnswerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F9823DC912E0087C0FD /* AnswerViewModel.swift */; };
+		A3F35F9B23DE0A090087C0FD /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F9A23DE0A090087C0FD /* QuizView.swift */; };
+		A3F35F9D23DE4C360087C0FD /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F35F9C23DE4C360087C0FD /* LoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +70,8 @@
 		A3F35F9323DC72090087C0FD /* TimeCountdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCountdown.swift; sourceTree = "<group>"; };
 		A3F35F9623DC7E0F0087C0FD /* QuizViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewModelTests.swift; sourceTree = "<group>"; };
 		A3F35F9823DC912E0087C0FD /* AnswerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerViewModel.swift; sourceTree = "<group>"; };
+		A3F35F9A23DE0A090087C0FD /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
+		A3F35F9C23DE4C360087C0FD /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +197,7 @@
 				A3F35F8823DC69760087C0FD /* LabelLarge.swift */,
 				A3F35F8A23DC69FB0087C0FD /* QuizFooterView.swift */,
 				A3F35F8C23DC6A890087C0FD /* HorizontalSeparator.swift */,
+				A3F35F9C23DE4C360087C0FD /* LoadingView.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -362,6 +367,7 @@
 				A3F35F7E23DC67C10087C0FD /* QuestionUseCases.swift in Sources */,
 				A3F35F8D23DC6A890087C0FD /* HorizontalSeparator.swift in Sources */,
 				A3F35F9023DC6DD80087C0FD /* QuizViewController.swift in Sources */,
+				A3F35F9D23DE4C360087C0FD /* LoadingView.swift in Sources */,
 				A3F35F7623DC66CE0087C0FD /* Resource.swift in Sources */,
 				A3F35F8023DC68720087C0FD /* Button.swift in Sources */,
 				A3F35F9223DC6DEA0087C0FD /* QuizViewModel.swift in Sources */,

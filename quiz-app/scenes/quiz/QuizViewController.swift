@@ -33,34 +33,38 @@ class QuizViewController: UIViewController {
     
     private func bindToViewModel () {
         viewModel.matchWillStart = { [weak self] in
-            self?.quizView.answerTextField.isEnabled = false
+            self?.quizView.hasNoAnswers()
+            self?.quizView.showLoadingView()
             self?.quizView.answerTextField.placeholder = self?.viewModel.answerTextFieldPlaceholder
             self?.quizView.quizFooterView.button.setTitle(self?.viewModel.startResetButtonText, for: .normal)
         }
-        
-        viewModel.matchDidStart = { [weak self] in
-            self?.quizView.answerTextField.isEnabled = true
-            self?.quizView.answerTextField.becomeFirstResponder()
-        }
 
         viewModel.matchIsReadyToStart = { [weak self] in
+            self?.quizView.hasNoAnswers()
+            self?.quizView.hideLoadingView()
             self?.quizView.questionLabel.text = self?.viewModel.question
             self?.quizView.quizFooterView.countdownLabel.text = self?.viewModel.timeCountdownLabelText
             self?.quizView.quizFooterView.scoringLabel.text = self?.viewModel.scoringLabelText
         }
 
+        viewModel.matchDidStart = { [weak self] in
+            self?.quizView.answerTextField.becomeFirstResponder()
+        }
+
         viewModel.timeCountdowDidUpdate = { [weak self] in
             self?.quizView.quizFooterView.countdownLabel.text = self?.viewModel.timeCountdownLabelText
         }
-        
+
         viewModel.playerDidHitAnKeyword = { [weak self] in
             self?.addAnswerTableViewCell()
             self?.quizView.quizFooterView.scoringLabel.text = self?.viewModel.scoringLabelText
+            if let hasAnswers = self?.viewModel.playerRightAnswers.count, hasAnswers > 0 {
+                self?.quizView.alreadyHasAnswers()
+            }
         }
-        
+
         viewModel.timeCountdowDidEnd = { [weak self] in
             self?.quizView.answerTextField.resignFirstResponder()
-            self?.quizView.answerTextField.isEnabled = false
             self?.quizView.answerTextField.text = ""
         }
     }
