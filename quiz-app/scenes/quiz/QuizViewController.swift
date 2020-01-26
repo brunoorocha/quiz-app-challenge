@@ -16,14 +16,35 @@ class QuizViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    private func bindToViewModel () {
+        viewModel.matchWillStart = { [weak self] in
+            self?.quizView.answerTextField.isEnabled = false
+            self?.quizView.quizFooterView.button.setTitle(self?.viewModel.startResetButtonText, for: .normal)
+        }
+        
+        viewModel.matchDidStart = { [weak self] in
+            self?.quizView.answerTextField.isEnabled = true
+            self?.quizView.answerTextField.becomeFirstResponder()
+        }
 
-    /*
-    // MARK: - Navigation
+        viewModel.matchIsReadyToStart = { [weak self] in
+            self?.quizView.questionLabel.text = self?.viewModel.question
+            self?.quizView.quizFooterView.countdownLabel.text = self?.viewModel.timeCountdownLabelText
+            self?.quizView.quizFooterView.scoringLabel.text = self?.viewModel.scoringLabelText
+        }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        viewModel.timeCountdowDidUpdate = { [weak self] in
+            self?.quizView.quizFooterView.countdownLabel.text = self?.viewModel.timeCountdownLabelText
+        }
+        
+//        viewModel.timeCountdowDidEnd = { [weak self] in
+//
+//        }
+    }
+    
+    @objc private func didTapOnStartResetButton () {
+        viewModel.onStartResetAction()
+        self.quizView.quizFooterView.button.setTitle(self.viewModel.startResetButtonText, for: .normal)
     }
     */
 

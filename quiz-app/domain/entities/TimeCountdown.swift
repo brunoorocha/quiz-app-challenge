@@ -17,7 +17,12 @@ class TimeCountdown {
     }
 
     var durationInSeconds: TimeInterval
-    var currentTime: TimeInterval
+    var currentTime: TimeInterval {
+        didSet {
+            timerDidUpdate?(currentTime)
+        }
+    }
+
     var timerDidUpdate: ((_ currentTime: TimeInterval) -> Void)?
     var timerDidEnd: (() -> Void)?
 
@@ -61,13 +66,13 @@ class TimeCountdown {
     }
 
     func reset () {
+        pause()
         state = .initial
     }
     
     private func timerDidUpdateBlock(_ timer: Timer) {
         if (state == .running) {
             currentTime -= 1
-            timerDidUpdate?(currentTime)
 
             if (currentTime == 0) {
                 state = .ended

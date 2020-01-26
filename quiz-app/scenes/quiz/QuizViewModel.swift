@@ -9,10 +9,10 @@
 import Foundation
 
 enum MatchState {
-    case initial
+    case notStarted
     case waitingToStart
     case running
-    case ended
+    case finished
 }
 
 class QuizViewModel {
@@ -24,11 +24,12 @@ class QuizViewModel {
     var timeCountdownInSeconds: TimeInterval
     var timer: TimeCountdown
     
-    var matchState: MatchState = .initial
+    var matchState: MatchState = .notStarted
     
     var timeCountdowDidUpdate: (() -> Void)?
     var timeCountdowDidEnd: (() -> Void)?
     var matchWillStart: (() -> Void)?
+    var matchIsReadyToStart: (() -> Void)?
     var matchDidStart: (() -> Void)?
     var matchDidEnd: (() -> Void)?
 
@@ -48,6 +49,10 @@ class QuizViewModel {
     
     var scoringLabelText: String {
         return String(format: "%02d/%02d", numberOfPlayerRightAnswers, numberOfPossibleAnswers)
+    }
+    
+    var startResetButtonText: String {
+        return self.matchState == .running ? "Reset" : "Start"
     }
     
     var playerRightAnswersViewModels: [AnswerViewModel] {
@@ -78,6 +83,15 @@ class QuizViewModel {
             playerRightAnswers.append(answer)
         }
     }
+    
+    func onStartResetAction () {
+        if (matchState == .running) {
+            resetMatch()
+            return
+        }
+
+        startMatch()
+    }
 
     func prepareMatchToStart () {
         matchState = .waitingToStart
@@ -104,11 +118,16 @@ class QuizViewModel {
     }
 
     func endMatch () {
-        matchState = .ended
-        timer.reset()
+        matchState = .finished
         matchDidEnd?()
     }
     
+    func resetMatch () {
+        matchState = .notStarted
+        timer.reset()
+        playerRightAnswers = []
+    }
+
     func updateTimeCountdown (_ value: TimeInterval) {
         timeCountdownInSeconds = value
         timeCountdowDidUpdate?()

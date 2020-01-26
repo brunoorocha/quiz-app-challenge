@@ -84,6 +84,48 @@ class QuizViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.playerRightAnswersViewModels.last?.answer, answer)
     }
     
+    func testStartResetButtonText_shouldInitWithStartValue () {
+        let viewModel = QuizViewModel()
+        XCTAssertEqual(viewModel.startResetButtonText, "Start")
+    }
+
+    func testStartResetButtonText_shouldHaveResetValueWhenMatchStarts () {
+        let viewModel = QuizViewModel()
+        viewModel.startMatch()
+        XCTAssertEqual(viewModel.startResetButtonText, "Reset")
+    }
+    
+    func testStartResetButtonText_shouldHaveStartValueWhenResetMatchMethodWasCalled () {
+        let viewModel = QuizViewModel()
+        viewModel.startMatch()
+        viewModel.resetMatch()
+        XCTAssertEqual(viewModel.startResetButtonText, "Start")
+    }
+    
+    func testMatchState_shouldBeNotStartedWhenInit () {
+        let viewModel = QuizViewModel()
+        XCTAssertEqual(viewModel.matchState, .notStarted)
+    }
+
+    func testMatchState_shouldBeRunningWhenMatchStarts () {
+        let viewModel = QuizViewModel()
+        viewModel.startMatch()
+        XCTAssertEqual(viewModel.matchState, .running)
+    }
+
+    func testMatchState_shouldBeWaitingToStartWhenMatchIsBeingPrepared () {
+        let viewModel = QuizViewModel()
+        viewModel.prepareMatchToStart()
+        XCTAssertEqual(viewModel.matchState, .waitingToStart)
+    }
+
+    func testMatchState_shouldBeEndedWhenMatchEnds () {
+        let viewModel = QuizViewModel()
+        viewModel.startMatch()
+        viewModel.endMatch()
+        XCTAssertEqual(viewModel.matchState, .finished)
+    }
+
     private func makeAMockQuizViewModel () -> QuizViewModel {
         var viewModel = QuizViewModel()
         viewModel.possibleAnswers = ["while", "for", "if"]
