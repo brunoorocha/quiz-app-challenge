@@ -10,9 +10,7 @@ import XCTest
 @testable import quiz_app
 
 class QuizViewModelTests: XCTestCase {
-
     override func setUp() {}
-
     override func tearDown() {}
 
     func testTimeCountdownLabel_shouldBeInRightFormat () {
@@ -31,15 +29,17 @@ class QuizViewModelTests: XCTestCase {
     }
 
     func testScoringLabelText_shouldBeInRightFormat_secondCase () {
-        var viewModel = makeAMockQuizViewModel()
+        let viewModel = makeAMockQuizViewModel()
+        viewModel.startMatch()
         viewModel.playerDidTypeAnAnswer(answer: "while")
         XCTAssertEqual(viewModel.scoringLabelText, "01/03")
     }
 
     func testPlayerTypedAnAnswer_shouldAddOnPlayerRightAnswersWhenItsRight () {
-        var viewModel = makeAMockQuizViewModel()
-        let answer = "for"
+        let viewModel = makeAMockQuizViewModel()
+        viewModel.startMatch()
 
+        let answer = "for"
         viewModel.playerDidTypeAnAnswer(answer: answer)
 
         XCTAssertEqual(viewModel.numberOfPlayerRightAnswers, 1)
@@ -47,9 +47,10 @@ class QuizViewModelTests: XCTestCase {
     }
 
     func testPlayerTypedAnAnswer_shouldAddOnPlayerRightAnswersJustOnceWhenItsRight () {
-        var viewModel = makeAMockQuizViewModel()
-        let answer = "for"
+        let viewModel = makeAMockQuizViewModel()
+        viewModel.startMatch()
 
+        let answer = "for"
         viewModel.playerDidTypeAnAnswer(answer: answer)
         viewModel.playerDidTypeAnAnswer(answer: answer)
         
@@ -58,14 +59,25 @@ class QuizViewModelTests: XCTestCase {
         XCTAssertEqual(numberOfEqualAnswers, 1)
     }
 
-    func testPlayerTypedAnAnswer_shouldNotAddOnPlayerRightAnswersWhenItsWrong () {
-        var viewModel = makeAMockQuizViewModel()
+    func testPlayerDidTypeAnAnswer_shouldNotAddOnPlayerRightAnswersWhenItsWrong () {
+        let viewModel = makeAMockQuizViewModel()
         let answer = "forever"
 
         viewModel.playerDidTypeAnAnswer(answer: answer)
 
         XCTAssertEqual(viewModel.numberOfPlayerRightAnswers, 0)
         XCTAssertFalse(viewModel.playerRightAnswers.contains(answer))
+    }
+
+    func testPlayerDidTypeAnAnswer_shouldNotAcceptAnswersWhenMatchIsNotRunning () {
+        let viewModel = makeAMockQuizViewModel()
+        let answer = "for"
+        let previousNumberOfRightAnswers = viewModel.numberOfPlayerRightAnswers
+
+        viewModel.playerDidTypeAnAnswer(answer: answer)
+
+        let currentNumberOfRightAnswers = viewModel.numberOfPlayerRightAnswers
+        XCTAssertEqual(currentNumberOfRightAnswers, previousNumberOfRightAnswers)
     }
     
     func testPlayerRightAnswersViewModels_shouldHaveTheSameNumberOfPlayerRightAnswers () {
@@ -77,7 +89,9 @@ class QuizViewModelTests: XCTestCase {
     }
     
     func testPlayerRightAnswersViewModels_answerPropertyShouldHaveTheRightValue () {
-        var viewModel = makeAMockQuizViewModel()
+        let viewModel = makeAMockQuizViewModel()
+        viewModel.startMatch()
+
         let answer = "for"
         viewModel.playerDidTypeAnAnswer(answer: answer)
 

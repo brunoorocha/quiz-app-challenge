@@ -78,6 +78,8 @@ class QuizViewModel {
     }
     
     func playerDidTypeAnAnswer(answer: String) {
+        if (matchState != .running) { return }
+
         let isPlayerAnswerRight = possibleAnswers.first { $0 == answer.lowercased() } != nil
         let answerHasAlreadyBeenCounted = playerRightAnswers.contains(answer)
         if (isPlayerAnswerRight && !answerHasAlreadyBeenCounted) {
