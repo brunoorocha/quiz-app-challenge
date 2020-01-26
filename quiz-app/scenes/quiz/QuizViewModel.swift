@@ -17,6 +17,7 @@ enum MatchState {
 
 class QuizViewModel {
     var question: String = ""
+    var answerTextFieldPlaceholder: String = "Insert Word"
     var possibleAnswers: [String] = []
     var playerRightAnswers: [String] = []
 
@@ -53,14 +54,14 @@ class QuizViewModel {
     }
     
     var startResetButtonText: String {
-        return self.matchState == .running ? "Reset" : "Start"
+        return matchState == .running || matchState == .finished ? "Reset" : "Start"
     }
     
     var playerRightAnswersViewModels: [AnswerViewModel] {
         return playerRightAnswers.map { AnswerViewModel(answer: $0) }
     }
 
-    init (timeLimitInSeconds: TimeInterval = 60) {
+    init (timeLimitInSeconds: TimeInterval = 10) {
         self.timeLimitInSeconds = timeLimitInSeconds
         timeCountdownInSeconds = timeLimitInSeconds
         timer = TimeCountdown(durationInSeconds: timeLimitInSeconds)
@@ -89,7 +90,7 @@ class QuizViewModel {
     }
     
     func onStartResetAction () {
-        if (matchState == .running) {
+        if (matchState == .running || matchState == .finished) {
             resetMatch()
             return
         }
@@ -138,6 +139,7 @@ class QuizViewModel {
     }
     
     func timedOut () {
+        endMatch()
         timeCountdowDidEnd?()
     }
 }

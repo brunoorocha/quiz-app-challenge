@@ -35,6 +35,7 @@ class QuizViewController: UIViewController {
     private func bindToViewModel () {
         viewModel.matchWillStart = { [weak self] in
             self?.quizView.answerTextField.isEnabled = false
+            self?.quizView.answerTextField.placeholder = self?.viewModel.answerTextFieldPlaceholder
             self?.quizView.quizFooterView.button.setTitle(self?.viewModel.startResetButtonText, for: .normal)
         }
         
@@ -58,9 +59,11 @@ class QuizViewController: UIViewController {
             self?.quizView.quizFooterView.scoringLabel.text = self?.viewModel.scoringLabelText
         }
         
-//        viewModel.timeCountdowDidEnd = { [weak self] in
-//
-//        }
+        viewModel.timeCountdowDidEnd = { [weak self] in
+            self?.quizView.answerTextField.resignFirstResponder()
+            self?.quizView.answerTextField.isEnabled = false
+            self?.quizView.answerTextField.text = ""
+        }
     }
     
     @objc private func didTapOnStartResetButton () {
@@ -84,6 +87,7 @@ class QuizViewController: UIViewController {
     private func playerWantToCheckAnAnswer () {
         guard let typedAnswer = quizView.answerTextField.text, !typedAnswer.isEmpty else { return }
         viewModel.playerDidTypeAnAnswer(answer: typedAnswer)
+        self.quizView.answerTextField.text = ""
     }
 }
 

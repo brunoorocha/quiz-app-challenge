@@ -47,9 +47,9 @@ class QuizView: UIView {
             answerTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             answerTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             
-            playerAnswersTableView.topAnchor.constraint(equalTo: answerTextField.bottomAnchor, constant: 16),
-            playerAnswersTableView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            playerAnswersTableView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            playerAnswersTableView.topAnchor.constraint(equalTo: answerTextField.bottomAnchor),
+            playerAnswersTableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            playerAnswersTableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             playerAnswersTableView.bottomAnchor.constraint(equalTo: quizFooterView.topAnchor),
 
             quizFooterView.bottomAnchor.constraint(equalTo: bottomAnchor),
