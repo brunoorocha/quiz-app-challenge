@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A381589123DE766000E2759D /* UIViewController+presentAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A381589023DE766000E2759D /* UIViewController+presentAlertController.swift */; };
+		A381589323DE7C3500E2759D /* MatchEndAlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A381589223DE7C3500E2759D /* MatchEndAlertViewModel.swift */; };
 		A39D8E1E23DC63C4009117A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39D8E1D23DC63C4009117A5 /* AppDelegate.swift */; };
 		A39D8E2023DC63C4009117A5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39D8E1F23DC63C4009117A5 /* SceneDelegate.swift */; };
 		A39D8E2223DC63C4009117A5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39D8E2123DC63C4009117A5 /* ViewController.swift */; };
@@ -47,6 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A381589023DE766000E2759D /* UIViewController+presentAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+presentAlertController.swift"; sourceTree = "<group>"; };
+		A381589223DE7C3500E2759D /* MatchEndAlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchEndAlertViewModel.swift; sourceTree = "<group>"; };
 		A39D8E1A23DC63C4009117A5 /* quiz-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "quiz-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A39D8E1D23DC63C4009117A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A39D8E1F23DC63C4009117A5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -232,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				A3F35F8623DC68C30087C0FD /* UIColor+rgbaExtension.swift */,
+				A381589023DE766000E2759D /* UIViewController+presentAlertController.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -242,6 +247,8 @@
 				A3F35F8F23DC6DD80087C0FD /* QuizViewController.swift */,
 				A3F35F9123DC6DEA0087C0FD /* QuizViewModel.swift */,
 				A3F35F9823DC912E0087C0FD /* AnswerViewModel.swift */,
+				A3F35F9A23DE0A090087C0FD /* QuizView.swift */,
+				A381589223DE7C3500E2759D /* MatchEndAlertViewModel.swift */,
 			);
 			path = quiz;
 			sourceTree = "<group>";
@@ -375,6 +382,9 @@
 				A3F35F7623DC66CE0087C0FD /* Resource.swift in Sources */,
 				A3F35F8023DC68720087C0FD /* Button.swift in Sources */,
 				A3F35F9223DC6DEA0087C0FD /* QuizViewModel.swift in Sources */,
+				A3F35F9B23DE0A090087C0FD /* QuizView.swift in Sources */,
+				A381589123DE766000E2759D /* UIViewController+presentAlertController.swift in Sources */,
+				A381589323DE7C3500E2759D /* MatchEndAlertViewModel.swift in Sources */,
 				A39D8E2023DC63C4009117A5 /* SceneDelegate.swift in Sources */,
 				A3F35F8723DC68C30087C0FD /* UIColor+rgbaExtension.swift in Sources */,
 			);

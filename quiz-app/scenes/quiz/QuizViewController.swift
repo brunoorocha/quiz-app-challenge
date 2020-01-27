@@ -65,9 +65,10 @@ class QuizViewController: UIViewController {
             }
         }
 
-        viewModel.timeCountdowDidEnd = { [weak self] in
+        viewModel.matchDidEnd = { [weak self] in
             self?.quizView.answerTextField.resignFirstResponder()
             self?.quizView.answerTextField.text = ""
+            self?.showMatchEndAlert()
         }
     }
 
@@ -84,6 +85,14 @@ class QuizViewController: UIViewController {
         guard let typedAnswer = quizView.answerTextField.text, !typedAnswer.isEmpty else { return }
         viewModel.playerDidTypedAnAnswer(answer: typedAnswer)
         self.quizView.answerTextField.text = ""
+    }
+    
+    private func showMatchEndAlert () {
+        presentAlertController(
+            withTitle: viewModel.matchEndAlertViewModel.title,
+            message: viewModel.matchEndAlertViewModel.message,
+            andActionTitle: viewModel.matchEndAlertViewModel.actionTitle
+        )
     }
     
     @objc private func didTapOnStartResetButton () {

@@ -35,6 +35,10 @@ class QuizViewModel {
     var matchDidEnd: (() -> Void)?
     var playerDidHitAnKeyword: (() -> Void)?
 
+    var playerDidWin: Bool {
+        return numberOfPlayerRightAnswers == numberOfPossibleAnswers
+    }
+
     var numberOfPossibleAnswers: Int {
         return possibleAnswers.count
     }
@@ -61,9 +65,22 @@ class QuizViewModel {
         return playerRightAnswers.map { AnswerViewModel(answer: $0) }
     }
     
+    var matchEndAlertViewModel: MatchEndAlerViewModel {
+        if (playerDidWin) {
+            return MatchEndAlerViewModel(
+                title: "Congratulations",
+                message: "Good job! You found all the answers on time. Keep up with the great work.",
+                actionTitle: "Play again"
+            )
+        }
+
+        let message = String(format: "Sorry, time is up! You got %d out of %d answers", numberOfPlayerRightAnswers, numberOfPossibleAnswers)
+        return MatchEndAlerViewModel(title: "Time finished", message: message, actionTitle: "Try Again")
+    }
+    
     var service: QuestionServiceProtocol
 
-    init (service: QuestionServiceProtocol, timeLimitInSeconds: TimeInterval = 10) {
+    init (service: QuestionServiceProtocol, timeLimitInSeconds: TimeInterval = 300) {
         self.timeLimitInSeconds = timeLimitInSeconds
         self.service = service
         timeCountdownInSeconds = timeLimitInSeconds
@@ -89,6 +106,10 @@ class QuizViewModel {
         if (isPlayerAnswerRight && !answerHasAlreadyBeenCounted) {
             playerRightAnswers.append(answer)
             playerDidHitAnKeyword?()
+
+            if (playerDidWin) {
+                endMatch()
+            }
         }
     }
     
@@ -126,6 +147,7 @@ class QuizViewModel {
 
     func endMatch () {
         matchState = .finished
+        timer.pause()
         matchDidEnd?()
     }
     
