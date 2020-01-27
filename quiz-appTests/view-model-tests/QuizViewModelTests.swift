@@ -14,12 +14,12 @@ class QuizViewModelTests: XCTestCase {
     override func tearDown() {}
 
     func testTimeCountdownLabel_shouldBeInRightFormat () {
-        let viewModel = QuizViewModel(service: QuestionService(), timeLimitInSeconds: 60)
+        let viewModel = makeAMockQuizViewModel()
         XCTAssertEqual(viewModel.timeCountdownLabelText, "01:00")
     }
     
     func testTimers_timeCountdownShouldBeEqualToTimeLimitWhenInitialized () {
-        let viewModel = QuizViewModel(service: QuestionService(), timeLimitInSeconds: 60)
+        let viewModel = makeAMockQuizViewModel()
         XCTAssertEqual(viewModel.timeCountdownInSeconds, viewModel.timeLimitInSeconds)
     }
 
@@ -81,15 +81,9 @@ class QuizViewModelTests: XCTestCase {
     }
     
     func testPlayerRightAnswersViewModels_shouldHaveTheSameNumberOfPlayerRightAnswers () {
-<<<<<<< HEAD
-        var viewModel = makeAMockQuizViewModel()
-        viewModel.playerDidTypeAnAnswer(answer: "for")
-        viewModel.playerDidTypeAnAnswer(answer: "while")
-=======
         let viewModel = makeAMockQuizViewModel()
         viewModel.playerDidTypedAnAnswer(answer: "for")
         viewModel.playerDidTypedAnAnswer(answer: "while")
->>>>>>> Make some refactoring to make the code more clearer and using dependency injection to set the service used on QuizViewModel
 
         XCTAssertEqual(viewModel.playerRightAnswersViewModels.count, viewModel.numberOfPlayerRightAnswers)
     }
@@ -105,48 +99,68 @@ class QuizViewModelTests: XCTestCase {
     }
     
     func testStartResetButtonText_shouldInitWithStartValue () {
-        let viewModel = QuizViewModel(service: QuestionService())
+        let viewModel = makeAMockQuizViewModel()
         XCTAssertEqual(viewModel.startResetButtonText, "Start")
     }
 
     func testStartResetButtonText_shouldHaveResetValueWhenMatchStarts () {
-        let viewModel = QuizViewModel(service: QuestionService())
+        let viewModel = makeAMockQuizViewModel()
         viewModel.startMatch()
         XCTAssertEqual(viewModel.startResetButtonText, "Reset")
     }
     
     func testStartResetButtonText_shouldHaveStartValueWhenResetMatchMethodWasCalled () {
-        let viewModel = QuizViewModel(service: QuestionService())
+        let viewModel = makeAMockQuizViewModel()
         viewModel.startMatch()
         viewModel.resetMatch()
         XCTAssertEqual(viewModel.startResetButtonText, "Start")
     }
     
     func testMatchState_shouldBeNotStartedWhenInit () {
-        let viewModel = QuizViewModel(service: QuestionService())
+        let stubService = QuestionServiceStub()
+        let viewModel = QuizViewModel(service: stubService, timeLimitInSeconds: 60)
         XCTAssertEqual(viewModel.matchState, .notStarted)
     }
 
     func testMatchState_shouldBeRunningWhenMatchStarts () {
-        let viewModel = QuizViewModel(service: QuestionService())
+        let viewModel = makeAMockQuizViewModel()
         viewModel.startMatch()
         XCTAssertEqual(viewModel.matchState, .running)
     }
 
     func testMatchState_shouldBeWaitingToStartWhenMatchIsBeingPrepared () {
-        let viewModel = QuizViewModel(service: QuestionService())
+        let viewModel = makeAMockQuizViewModel()
         viewModel.prepareMatchToStart()
         XCTAssertEqual(viewModel.matchState, .waitingToStart)
     }
 
     func testMatchState_shouldBeEndedWhenMatchEnds () {
-        let viewModel = QuizViewModel(service: QuestionService())
+        let viewModel = makeAMockQuizViewModel()
         viewModel.startMatch()
         viewModel.endMatch()
         XCTAssertEqual(viewModel.matchState, .finished)
     }
+    
+    func testPrepareMatchToStart_shouldCallQuestionServiceGetQuestionMethod () {
+        let viewModel = makeAMockQuizViewModel()
+        let service = viewModel.service as! QuestionServiceStub
+        XCTAssertTrue(service.requestWasCaled)
+    }
+    
+    func testPrepareMatchToStart_shouldSetQuestionWhenServiceCompletionSuccess () {
+        let viewModel = makeAMockQuizViewModel()
+        let service = viewModel.service as! QuestionServiceStub
+        XCTAssertEqual(viewModel.question, service.mockResponse.question)
+    }
+
+    func testPrepareMatchToStart_shouldSetAnswerWhenServiceCompletionSuccess () {
+        let viewModel = makeAMockQuizViewModel()
+        let service = viewModel.service as! QuestionServiceStub
+        XCTAssertEqual(viewModel.possibleAnswers, service.mockResponse.answer)
+    }
 
     private func makeAMockQuizViewModel () -> QuizViewModel {
+<<<<<<< HEAD
 <<<<<<< HEAD
         var viewModel = QuizViewModel()
 =======
@@ -154,6 +168,11 @@ class QuizViewModelTests: XCTestCase {
 >>>>>>> Make some refactoring to make the code more clearer and using dependency injection to set the service used on QuizViewModel
         viewModel.possibleAnswers = ["while", "for", "if"]
         viewModel.playerRightAnswers = []
+=======
+        let stubService = QuestionServiceStub()
+        let viewModel = QuizViewModel(service: stubService, timeLimitInSeconds: 60)
+        viewModel.prepareMatchToStart()
+>>>>>>> Created a QuestionServiceStub to mock service calls from QuizViewModel and writed tests for success cases
         return viewModel
     }
 }
