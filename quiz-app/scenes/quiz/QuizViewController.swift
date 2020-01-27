@@ -60,6 +60,7 @@ class QuizViewController: UIViewController {
         viewModel.playerDidHitAnKeyword = { [weak self] in
             self?.addAnswerTableViewCell()
             self?.quizView.quizFooterView.scoringLabel.text = self?.viewModel.scoringLabelText
+            self?.quizView.answerTextField.text = ""
             if let hasAnswers = self?.viewModel.playerRightAnswers.count, hasAnswers > 0 {
                 self?.quizView.alreadyHasAnswers()
             }
@@ -88,7 +89,6 @@ class QuizViewController: UIViewController {
     private func playerWantToCheckAnAnswer () {
         guard let typedAnswer = quizView.answerTextField.text, !typedAnswer.isEmpty else { return }
         viewModel.playerDidTypedAnAnswer(answer: typedAnswer)
-        self.quizView.answerTextField.text = ""
     }
     
     private func showMatchEndAlert () {

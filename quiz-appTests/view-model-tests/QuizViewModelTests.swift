@@ -158,6 +158,19 @@ class QuizViewModelTests: XCTestCase {
         let service = viewModel.service as! QuestionServiceStub
         XCTAssertEqual(viewModel.possibleAnswers, service.mockResponse.answer)
     }
+    
+    func testPrepareMatchToStart_shouldCallOnErrorClosureWhenServiceReturnsAnError () {
+        let stubService = NetworkServiceErrorStub()
+        let questionService = QuestionService(networkService: stubService)
+        let viewModel = QuizViewModel(service: questionService)
+        let onErrorWasCalledExpectation = expectation(description: "onError was called")
+        viewModel.onError = { _ in
+            onErrorWasCalledExpectation.fulfill()
+        }
+        viewModel.prepareMatchToStart()
+
+        waitForExpectations(timeout: 1, handler: nil)
+    }
 
     private func makeAMockQuizViewModel () -> QuizViewModel {
 <<<<<<< HEAD
