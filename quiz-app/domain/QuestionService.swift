@@ -1,21 +1,21 @@
 //
-//  QuestionUseCases.swift
+//  QuestionService.swift
 //  quiz-app
 //
-//  Created by Bruno Rocha on 25/01/20.
+//  Created by Bruno Rocha on 26/01/20.
 //  Copyright © 2020 Bruno Rocha. All rights reserved.
 //
 
 import Foundation
 
-protocol QuestionUseCasesProtocol {
+protocol QuestionServiceProtocol {
     func getQuestion (completionHandler: @escaping (Result<QuizQuestion, Error>) -> Void)
 }
 
-final class QuestionUseCases: QuestionUseCasesProtocol {
+final class QuestionService: QuestionServiceProtocol {
     let networkService: NetworkServiceProtocol!
     
-    init(networkService: NetworkServiceProtocol) {
+    init(networkService: NetworkServiceProtocol = NetworkService()) {
         self.networkService = networkService
     }
     
@@ -34,4 +34,3 @@ final class QuestionUseCases: QuestionUseCasesProtocol {
         }
     }
 }
-

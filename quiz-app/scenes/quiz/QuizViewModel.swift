@@ -60,9 +60,12 @@ class QuizViewModel {
     var playerRightAnswersViewModels: [AnswerViewModel] {
         return playerRightAnswers.map { AnswerViewModel(answer: $0) }
     }
+    
+    var service: QuestionServiceProtocol
 
-    init (timeLimitInSeconds: TimeInterval = 10) {
+    init (service: QuestionServiceProtocol, timeLimitInSeconds: TimeInterval = 10) {
         self.timeLimitInSeconds = timeLimitInSeconds
+        self.service = service
         timeCountdownInSeconds = timeLimitInSeconds
         timer = TimeCountdown(durationInSeconds: timeLimitInSeconds)
         bindToTimerEvents()
@@ -78,7 +81,7 @@ class QuizViewModel {
         }
     }
     
-    func playerDidTypeAnAnswer(answer: String) {
+    func playerDidTypedAnAnswer(answer: String) {
         if (matchState != .running) { return }
 
         let isPlayerAnswerRight = possibleAnswers.first { $0 == answer.lowercased() } != nil
@@ -101,9 +104,8 @@ class QuizViewModel {
     func prepareMatchToStart () {
         matchState = .waitingToStart
         matchWillStart?()
-        
-        let useCase = QuestionUseCases(networkService: NetworkService())
-        useCase.getQuestion { [weak self] (result: Result<QuizQuestion, Error>) in
+
+        service.getQuestion { [weak self] (result: Result<QuizQuestion, Error>) in
             switch result {
             case .success(let quiz):
                 self?.question = quiz.question

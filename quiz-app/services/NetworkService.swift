@@ -33,11 +33,13 @@ final class NetworkService: NetworkServiceProtocol {
                 if let errorResponse = response as? HTTPURLResponse, (400..<600).contains(errorResponse.statusCode) {
                     networkServiceError = .serverError
                 }
-                else if (error._code == NSURLErrorNotConnectedToInternet) {
+
+                switch error._code {
+                case NSURLErrorNotConnectedToInternet:
                     networkServiceError = .noInternetConnection
-                } else if (error._code == NSURLErrorCancelled) {
+                case NSURLErrorCancelled:
                     networkServiceError = .connectionCancelled
-                } else {
+                default:
                     networkServiceError = .unknown
                 }
 

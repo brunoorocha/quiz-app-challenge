@@ -9,6 +9,8 @@
 import UIKit
 
 class QuizViewController: UIViewController {
+    let quizView = QuizView()
+    let viewModel = QuizViewModel(service: QuestionService())
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,7 +82,7 @@ class QuizViewController: UIViewController {
     
     private func playerWantToCheckAnAnswer () {
         guard let typedAnswer = quizView.answerTextField.text, !typedAnswer.isEmpty else { return }
-        viewModel.playerDidTypeAnAnswer(answer: typedAnswer)
+        viewModel.playerDidTypedAnAnswer(answer: typedAnswer)
         self.quizView.answerTextField.text = ""
     }
     
