@@ -70,6 +70,10 @@ class QuizViewController: UIViewController {
             self?.quizView.answerTextField.text = ""
             self?.showMatchEndAlert()
         }
+        
+        viewModel.onError = { [weak self] error in
+            self?.showErrorAlert(errorDescription: error.localizedDescription)
+        }
     }
 
     private func addAnswerTableViewCell () {
@@ -93,6 +97,10 @@ class QuizViewController: UIViewController {
             message: viewModel.matchEndAlertViewModel.message,
             andActionTitle: viewModel.matchEndAlertViewModel.actionTitle
         )
+    }
+    
+    private func showErrorAlert (errorDescription: String) {
+        presentAlertController(withTitle: "Something's wrong", message: errorDescription, andActionTitle: "Ok")
     }
     
     @objc private func didTapOnStartResetButton () {

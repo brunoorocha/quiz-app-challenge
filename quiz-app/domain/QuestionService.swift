@@ -9,7 +9,7 @@
 import Foundation
 
 protocol QuestionServiceProtocol {
-    func getQuestion (completionHandler: @escaping (Result<QuizQuestion, Error>) -> Void)
+    func getQuestion (completionHandler: @escaping (Result<QuizQuestion, NetworkServiceError>) -> Void)
 }
 
 final class QuestionService: QuestionServiceProtocol {
@@ -19,7 +19,7 @@ final class QuestionService: QuestionServiceProtocol {
         self.networkService = networkService
     }
     
-    func getQuestion(completionHandler: @escaping (Result<QuizQuestion, Error>) -> Void) {
+    func getQuestion(completionHandler: @escaping (Result<QuizQuestion, NetworkServiceError>) -> Void) {
         let questionResource = Resource(endpoint: "https://codechallenge.arctouch.com/quiz/1", httpMethod: .get)
         networkService.request(resource: questionResource) { (result: Result<QuizQuestion?, NetworkServiceError>) in
             switch result {

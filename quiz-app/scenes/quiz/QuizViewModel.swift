@@ -34,6 +34,7 @@ class QuizViewModel {
     var matchDidStart: (() -> Void)?
     var matchDidEnd: (() -> Void)?
     var playerDidHitAnKeyword: (() -> Void)?
+    var onError: ((_ : NetworkServiceError) -> Void)?
 
     var playerDidWin: Bool {
         return numberOfPlayerRightAnswers == numberOfPossibleAnswers
@@ -126,15 +127,14 @@ class QuizViewModel {
         matchState = .waitingToStart
         matchWillStart?()
 
-        service.getQuestion { [weak self] (result: Result<QuizQuestion, Error>) in
+        service.getQuestion { [weak self] (result: Result<QuizQuestion, NetworkServiceError>) in
             switch result {
             case .success(let quiz):
                 self?.question = quiz.question
                 self?.possibleAnswers = quiz.answer
                 self?.startMatch()
             case .failure(let error):
-                
-                return
+                self?.onError?(error)
             }
         }
     }
